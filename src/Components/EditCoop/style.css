@@ -1,0 +1,98 @@
+.fullEditCoopConteiner{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.imgEditConteiner{
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    
+}
+.labalImgCoop{
+    width: 220px;
+    height: 45px;
+    border: none;
+    border: 0.5px solid #fff;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #666;
+    box-shadow: 1px 1px 1px 1px #999;
+    margin-top: 20px;
+    display: flex;justify-content: center;
+    align-items: center;
+    transform: scale(0.9);
+}
+.labalImgCoop:hover{
+    font-size: 1.2rem;
+    font-weight: 800;
+    box-shadow: 1px 1px 1px 1px #666;
+    transform: scale(1);
+    transition: 0.3s;
+    cursor: pointer;
+}
+.getImgCoop{
+    width: 220px;
+    height: 220px;
+    border: none;
+    border-radius: 100%;
+    border: 1px solid #666;
+    box-shadow: 1px 1px 1px 1px #666;
+    padding: 5px;
+    background-color: #fff;
+    mix-blend-mode: multiply;
+}
+.dataCoopFuull{
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+.sobreAllInputs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.marginTextCoop{
+    margin: 10px 0px 20px 0px;
+
+}
+.inpData{
+    width: 80%;
+    padding: 5px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    border: 1px solid #666;
+    box-shadow: 1px 1px 1px 1px #666;
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+.fonfirmEditCoop{
+    cursor: pointer;
+    color: #fff;
+    background-color: #69C181;
+    width: 83%;
+    height: 45px;
+    border: none;
+    box-shadow: 1px 1px 1px 1px #999;
+    font-weight: 700;
+    font-size: 1.3rem;
+    transform: scale(0.98);
+}
+.fonfirmEditCoop:hover{
+    transform: scale(1);
+    color: #000;
+    box-shadow: 1px 1px 1px 1px #666;
+    transition: 0.3s;
+}
