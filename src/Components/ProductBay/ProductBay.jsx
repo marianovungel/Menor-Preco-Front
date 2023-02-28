@@ -19,7 +19,6 @@ export default function ProductBay({data}) {
     const [total, setTotal] = useState(data && quantidade*data?.precoatual)
     const { user } = useContext(Context)
     let navigate = useNavigate()
-
     
 
     useEffect(()=>{
@@ -32,8 +31,44 @@ export default function ProductBay({data}) {
                 tokenId: token.id,
                 amount: total,
             })
-            console.log(res)
-            navigate('/')
+            if(res.data){
+                await axios.post("http://localhost:8000/compra/criar", {
+                    idproduto: data?._id,
+                    produtoNome: data?.nome,
+                    produtoImagem: data?.profilePic,
+                    iduser: user?._id,
+                    idcoop: data?.idcoop,
+                    valor:data?.precoatual,
+                    valortotal:total,
+                    quantidade: quantidade,
+                    estado:"pago" 
+                })
+                Swal.fire({
+                    title: 'Compra realizada com Sucesso. A Cooperativa será Paga Assim que Confirmares o Recebimento Do Produto!',
+                    width: 600,
+                    padding: '3em',
+                    color: '#fff',
+                    background: `#69C181 url()`,
+                    backdrop: `
+                      rgba(0,0,123,0.4)
+                      url("../logo-sem-fundo.png")
+                      left top
+                      no-repeat
+                    `
+                  })
+
+                  navigate(`/user/${user._id}`)
+                
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cancelado!',
+                    text: 'Compra cancelada com Sucesso!',
+                    footer: '<a href="">Você pode Tentar Novamente?</a>'
+                  })
+            }
+            // navigate('/')
+
         } catch (error) {
             console.log(error)
         }
@@ -118,15 +153,21 @@ export default function ProductBay({data}) {
                         </span>
                     </li>
                     {data.idcoop === user._id && (
-                    <li className="buttonsGrup">
-                        <button className='DeliteBuu' onClick={SetDit}>Editar</button>
-                        <button className='delitBoo' onClick={confirmDelect}>Deletar</button>
-                    </li>
+                        <>
+                        {user.type === "coop" && (
+                        <li className="buttonsGrup">
+                            <button className='DeliteBuu' onClick={SetDit}>Editar</button>
+                            <button className='delitBoo' onClick={confirmDelect}>Deletar</button>
+                        </li>
+                        )}
+                        </>
                     )}
+                    {user.type === "use" && (
                     <li className="comprar">
                         <input type="number" onChange={(e)=>setQuantidade(e.target.value)} className='compraValor' placeholder='Quantidade' />
                         <button className='buComp' onClick={pagarCardAgora}>Comprar</button>
                     </li>
+                    )}
                 </div>):(
                     <div id="bayCArd" >
                         <li className="nome">
@@ -159,7 +200,7 @@ export default function ProductBay({data}) {
                                 stripeKey={KEY}
                                 token={onToken}
                             >
-                                <button className='ComprarAgora'><i class="fa-brands fa-cc-mastercard"></i> <i class="fa-brands fa-cc-visa marginCardBay"></i> Comprar Agora</button>
+                                <button className='ComprarAgora'><i className="fa-brands fa-cc-mastercard"></i> <i className="fa-brands fa-cc-visa marginCardBay"></i> Comprar Agora</button>
                             </StripeCheckout>
                         </div>
                         

@@ -20,14 +20,14 @@ export default function ProductCoop({text, path}) {
         
         <div className="productContent">
             {data.map((data)=>(
-                    <Link className="cardProduct" to={`/produto/${data?._id}`} key={data._id}>
-                        <img src={host+data?.profilePic} alt="" className="imgCardProduct" />
-                        <h6 className="nameProduct">{data.nome}</h6>
-                        <div className="precoCard">
-                            <span className="PrecoProduct atual">R ${data.precoatual}</span>
-                            <span className="PrecoProduct deshed">R ${data.precoanterior}</span>
-                        </div>
-                    </Link>
+                <Link to={`/produto/${data?._id}`} className="cardProductNew" key={data?._id}>
+                <img src={host+data?.profilePic} alt="" className="imgCardProductnew" />
+                <h6 className="nameProductNew">{data?.nome}</h6>
+                <div className="precoCardNew">
+                    <span className="PrecoProductnew atualnew">R ${data?.precoatual}</span>
+                    <span className="PrecoProductnew deshednew">R ${data?.precoanterior}</span>
+                </div>
+            </Link>
             ))}
 
         </div>

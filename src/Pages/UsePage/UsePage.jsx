@@ -2,17 +2,14 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import EditCoop from '../../Components/EditCoop/EditCoop'
-import FormCad from '../../Components/FormCad/FormCad'
+import Compra from '../../Components/Compra/Compra'
+import EditUse from '../../Components/EditUse/EditUse'
 import Header from '../../Components/Header/Header'
 import Menu from '../../Components/Menu/Menu'
-import ProductCoop from '../../Components/ProductCoop/ProductCoop'
-import Venda from '../../Components/Venda/Venda'
 import { Context } from '../../Context/Context'
 import './style.css'
 
-export default function CoopPage() {
-    const [show, setShow] = useState(true)
+export default function UsePage() {
     const [showEditCoop, setShowEditCoop] = useState(false)
     const [coop, setCoop] = useState({})
     const localization = useLocation()
@@ -27,18 +24,6 @@ export default function CoopPage() {
         }
     }
 
-    useEffect(()=>{
-        const getCoop = async()=>{
-            const res = await axios.get(`http://localhost:8000/coop/${path}`)
-            setCoop(res.data)
-        }
-        getCoop()
-    }, [path])
-
-
-    const SetShow = ()=>{
-        setShow(false)
-    }
     const suaFalta = async ()=>{
         Swal.fire({
             title: 'Obrigado Pela Sugestão. A gente Adorou o seu tempo aqui e Sintiremos a sua Falta!',
@@ -99,6 +84,14 @@ export default function CoopPage() {
         dispatch({type: "LOGOUT"})
     }
 
+    useEffect(()=>{
+        const getCoop = async()=>{
+            const res = await axios.get(`http://localhost:8000/auth/${path}`)
+            setCoop(res.data)
+        }
+        getCoop()
+    }, [path])
+
   return (
     <div className='fullConteinerCoopPage'>
         <Header />
@@ -106,33 +99,28 @@ export default function CoopPage() {
         <div className="conteinerCoop">
             <div className="sideBarCoop">
                 <div className="descCoop">
-                    <div className="avaliacoesCoop">
-                        <span className="textCoop">Avaliações</span>
-                        <div className="starCoop">
-                            <span className='numCoop'>4.85</span>
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
-                            <i className="fa-solid fa-star"></i>
-                        </div>
-                    </div>
+                    
                     <div className="enderecoCoop">
                         <span className="textCoop">Endereço</span>
                         <div className="descEndCoop">
-                            {coop.sobre}
+                            {coop.endereco}
                         </div>
                     </div>
                     <div className="avaliacoesCoop">
-                        <span className="textCoop">Horário</span>
-                        <div className="descEndCoop">{coop.horario}</div>
+                        <span className="textCoop">Email</span>
+                        <div className="descEndCoop">
+                            {coop.email}
+                        </div>
+                    </div>
+                    <div className="avaliacoesCoop">
+                        <span className="textCoop">Whatsapp</span>
+                        <div className="descEndCoop">
+                            {coop.whatsapp}
+                        </div>
                     </div>
                 </div>
                 {user._id === path && (
                     <>
-                    <button className="buttonCoop" onClick={SetShow}>
-                        <i className="fa-regular fa-pen-to-square mW"></i> Cradastrar
-                    </button>
                     <button className="buttonCoopEdit" onClick={EditCoooop}>
                         <i className="fa-solid fa-user-pen mW"></i> Editar
                     </button>
@@ -143,13 +131,12 @@ export default function CoopPage() {
                 )}
             </div>
             <div className="settingCoop">
-                <div className="nomeCoopCont">{coop.nome}</div>
-
-                {showEditCoop && (<EditCoop path={path} />)}
-                <div className="textCompraH"><h3 className='encostarNaParede'>Nova Venda</h3></div>
-                <Venda />
-                {show && (<ProductCoop text={"Produto"} path={path} />)}
-                {!show && (<FormCad setShow={setShow} />)}
+                <div className="nomeCoopCont">
+                    {coop.username}
+                </div>
+                {showEditCoop && (<EditUse path={path} />)}
+                <div className="textCompraH"><h3 className='encostarNaParede'>Compras à Receber</h3></div>
+                <Compra text={"Produto"} path={path} />
             </div>
         </div>
     </div>

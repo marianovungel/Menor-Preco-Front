@@ -19,47 +19,45 @@
     flex-wrap: wrap;
 }
 
-.cardProduct{
-    width: 200px;
-    min-width: 160px;
-    height: 260px;
-    background-color: #99999931;
-    margin-right: 20px;
+.cardProductNew{
+    width: 230px;
+    height: 350px;
+    background-color: #fff;
+    margin: 20px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 1px 1px 1px 1px #999;
-    margin-bottom: 20px;
+    box-shadow: 1px 1px 1px 1px #d9d9d9;
 }
-.imgCardProduct{
-    width: 100%;
+.imgCardProductnew{
+    width: 230px;
     height: 200px;
-    max-height: 200px;
-    box-sizing: border-box;
     border-radius: 10px 10px 0px 0px;
 }
-.nameProduct{
+.nameProductNew{
     font-size: 1rem;
-    margin: 15px;
-    height: 20px;
+    margin: 10px;
+    color: #000;
 }
-.precoCard{
+.precoCardNew{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
+    height: 200px;
+    margin-top: 20px;
 }
-.PrecoProduct{
+.PrecoProductnew{
     margin: 10px;
 }
-.atual{
-    font-weight: 600;
+.atualnew{
+    font-weight: 700;
     color: rgb(24, 206, 24);
 }
-.deshed{
+.deshednew{
+    color: #000;
     font-size: 0.7rem;
     text-decoration:line-through;
 }

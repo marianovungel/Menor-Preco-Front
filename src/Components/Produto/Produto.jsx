@@ -1,33 +1,30 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import './style.css'
 const host = "http://localhost:8000/"
 
 
-export default function Produto({text}) {
+export default function Produto({text, datad}) {
     const [data, setData] = useState([])
 
     useEffect(()=>{
-        const getData = async()=>{
-            const res = await axios.get("http://localhost:8000/product")
-            setData(res.data)
-        }
-        getData()
-    }, [])
+        setData((prev)=>datad)
+    }, [datad])
+
   return (
     <div className='fullContentProduct'>
         <h5 className="headeProduct">{text}</h5>
         
         <div className="productContent">
             {data?.map((data)=>(
-                <div className="cardProduct" key={data?._id}>
-                    <img src={host+data?.profilePic} alt="" className="imgCardProduct" />
-                    <h6 className="nameProduct">{data?.nome}</h6>
-                    <div className="precoCard">
-                        <span className="PrecoProduct atual">R ${data?.precoatual}</span>
-                        <span className="PrecoProduct deshed">R ${data?.precoanterior}</span>
+                <Link to={`/produto/${data?._id}`} className="cardProductNew" key={data?._id}>
+                    <img src={host+data?.profilePic} alt="" className="imgCardProductnew" />
+                    <h6 className="nameProductNew">{data?.nome}</h6>
+                    <div className="precoCardNew">
+                        <span className="PrecoProductnew atualnew">R ${data?.precoatual}</span>
+                        <span className="PrecoProductnew deshednew">R ${data?.precoanterior}</span>
                     </div>
-                </div>
+                </Link>
             ))}
 
         </div>

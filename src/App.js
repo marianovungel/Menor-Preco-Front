@@ -9,6 +9,7 @@ import { useContext } from 'react';
 import SingleProduct from './Pages/SingleProduct/SingleProduct';
 import Pay from './Pages/Pay/Pay';
 import PaySuccess from './Pages/Pay/PaySuccess';
+import UsePage from './Pages/UsePage/UsePage';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/cooperativa" element={user ? <Coop /> : <Login />} exact />
             <Route path="/cooperativa/:id" element={user ? <CoopPage /> : <Login />} exact />
             <Route path="/produto/:id" element={user ? <SingleProduct /> : <Login />} exact />
+            <Route path="/user/:id" element={user ? <UsePage /> : <Login />} exact />
             <Route path="/pay" element={user ? <Pay /> : <Login />} exact />
             <Route path="/success" element={user ? <PaySuccess /> : <Login />} exact />
           </Routes>

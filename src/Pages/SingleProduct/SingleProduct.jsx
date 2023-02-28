@@ -60,22 +60,22 @@ export default function SingleProduct() {
                     <div className="enderecoCoop">
                         <span className="textCoop">Endereço</span>
                         <div className="descEndCoop">
-                            {coop.sobre}
+                            {coop?.sobre}
                         </div>
                     </div>
                     <div className="avaliacoesCoop">
                         <span className="textCoop">Horário</span>
-                        <div className="descEndCoop">{coop.horario}</div>
+                        <div className="descEndCoop">{coop?.horario}</div>
                     </div>
                 </div>
-                {user._id === data.idcoop && (
+                {user?._id === data.idcoop && (
                 <button className="buttonCoop" onClick={SetShow}>
                     <i className="fa-regular fa-pen-to-square mW"></i> Cradastrar
                 </button>
                 )}
             </div>
             <div className="settingCoop">
-                <div className="nomeCoopCont">{coop.nome}</div>
+                <div className="nomeCoopCont">{coop?.nome}</div>
                 {/* criar novo componente para produto */}
                 <ProductBay data={data} />
             </div>

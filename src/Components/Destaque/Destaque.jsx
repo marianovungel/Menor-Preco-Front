@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './style.css'
+const host = "http://localhost:8000/"
 
 export default function Destaque() {
 
@@ -37,7 +38,7 @@ export default function Destaque() {
                 {/* onClick={() => history.push(`/post/${post?.id}`, post)}  key={post?.photo} */}
             <div className="Produto" key={post?._id}>
                 <div className='imgProduto' id='Produto'>
-                    <img className='imagemCard sizePhoto' src={post?.profilePic} alt=' '/>
+                    <img className='imagemCard sizePhoto' src={host+post?.profilePic} alt=' '/>
                 </div>
                 <div className='nomePreco'>
                     <h5 className='valorNome'>{post?.nome}</h5>
